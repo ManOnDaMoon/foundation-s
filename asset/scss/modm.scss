@@ -4,16 +4,18 @@
 @import 'globals-modm';
 @import 'settings';
 
-
 // ManOnDaMoon Settings
 
-// Here
+
+@import 'foundation-core';
+@import 'omeka';
 
 .resource.show #swiper {
 	width: 100%;
 }
 
-.swiper-container {
+.swiper-container, .swiper-wrapper {
+	z-index: auto !important;
 }
 
 .swiper-slide {
@@ -41,17 +43,39 @@
 }
 
 .swiper-pagination-bullet-active {
-	--swiper-theme-color: #0a0a0a;
+	--swiper-pagination-color: #0a0a0a;
 }
 
 .swiper-button-disabled {
-	--swiper-theme-color: #767676;
+	--swiper-theme-color: $secondary-color;
 }
 
 .swiper-button-prev, .swiper-button-next {
-	--swiper-theme-color: #0a0a0a;
+	--swiper-theme-color: $primary-color;
 }
 
-@import 'foundation-core';
-@import 'omeka';
+.value a,
+span a,
+.browse-controls > a,
+.preview-header > a {
+	text-decoration: underline $secondary-color;	
+}
 
+.value a:hover,
+span a:hover,
+.browse-controls a:hover,
+.preview-header a:hover{
+	color: $secondary-color;
+}
+
+.menu a:hover,
+h3 a:hover,
+h4 a:hover,
+span a:hover {
+	color: $secondary-color
+}
+
+
+.thumbnail, .media-list img {
+	box-shadow: none;
+}
