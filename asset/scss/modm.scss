@@ -5,10 +5,16 @@
 @import 'settings';
 
 // ManOnDaMoon Settings
+$button-background: $secondary-color;
+$button-background-hover: $dark-gray;
+$button-color: $white;
+
 
 
 @import 'foundation-core';
 @import 'omeka';
+
+// SWIPER
 
 .resource.show #swiper {
 	width: 100%;
@@ -54,6 +60,8 @@
 	--swiper-theme-color: $primary-color;
 }
 
+// LINKS
+
 .value a,
 span a,
 .browse-controls > a,
@@ -76,6 +84,35 @@ span a:hover {
 }
 
 
+// THUMBNAIL BORDER
+
 .thumbnail, .media-list img {
 	box-shadow: none;
+}
+
+// HEADER COLOR
+
+.top-bar, .top-bar ul {
+	background-color: $primary-color;
+	color: $white;
+}
+
+.top-bar a {
+	color: $white;
+}
+
+.top-bar a:hover {
+	color: $secondary-color;
+}
+
+.dropdown.menu>li.is-active>a,
+.toc-block>ul.dropdown>li.is-active>a,
+.toc-block ul ul.dropdown>li.is-active>a {
+	color: $secondary-color;	
+}
+
+// SITE LOGIN
+
+.site-login {
+	max-width: 400px; 
 }
