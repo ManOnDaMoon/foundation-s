@@ -27,7 +27,7 @@ $queryUrl = $this->url(
 <div class="browse-controls">
     <div class="layout-toggle">
         <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid o-icon-grid" <?php echo $gridState; ?>></button>
-        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>        
+        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>
     </div>
 </div>
 <?php endif; ?>
@@ -38,8 +38,10 @@ $queryUrl = $this->url(
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
 foreach ($this->resources as $resource):
-    $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]')]) : $resource->displayTitle();
-    $body = $bodyTerm ? $resource->value($bodyTerm) : $resource->displayDescription();
+    $heading = $resource->value($headingTerm, ['default' => $this->translate('[Untitled]')]);
+    $bodyTermValue = $resource->value($bodyTerm);
+    $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+    $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($thumbnail = $this->thumbnail($resource, 'medium')): ?>
