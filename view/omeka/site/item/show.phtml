@@ -5,6 +5,12 @@ $this->htmlElement('body')->appendAttribute('class', 'item resource show');
 $embedMedia = $this->siteSetting('item_media_embed', false);
 $itemMedia = $item->media();
 $showLayout = $this->themeSetting('show_layout');
+
+
+$this->headScript()->prependFile('https://unpkg.com/swiper/swiper-bundle.js');
+$this->headLink()->prependStylesheet('https://unpkg.com/swiper/swiper-bundle.css');
+
+
 ?>
 
 <div class="resource-title">
@@ -13,23 +19,34 @@ $showLayout = $this->themeSetting('show_layout');
 </div>
 
 <div class="grid-x">
-  
-<?php if ($embedMedia && $itemMedia): ?>
-<div class="media-embeds">
-<?php foreach ($itemMedia as $media):
-    echo $media->render();
-endforeach;
-?>
-</div>
-<?php endif; ?>
-<?php if (!$embedMedia && $itemMedia): ?>
-<div class="media-list">
-    <?php foreach ($itemMedia as $media): ?>
-        <?php echo $media->linkPretty(); ?>
-    <?php endforeach; ?>
-</div>
-<?php endif; ?>
 
+<?php if ($itemMedia): ?>
+<div id="swiper">
+    <!-- Slider main container -->
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+
+        <?php foreach ($itemMedia as $media): ?>
+
+            <!-- Slides -->
+            <div class="swiper-slide">
+            	<div class="swiper-zoom-container">
+          			<img src="<?php echo $media->originalUrl(); ?>" alt=""/>
+          		</div>
+			</div>
+
+        <?php endforeach; ?>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>
+<?php endif; ?>
 <div id="resource-values" class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
     <?php $this->trigger('view.show.before'); ?>
     <?php echo $item->displayValues(); ?>
@@ -46,7 +63,7 @@ endforeach;
     </div>
     <?php endif; ?>
     </dl>
-    
+
     <?php
     $page = $this->params()->fromQuery('page', 1);
     $property = $this->params()->fromQuery('property');
@@ -58,8 +75,22 @@ endforeach;
         <?php echo $subjectValues; ?>
     </div>
     <?php endif; ?>
-    
+
     <?php $this->trigger('view.show.after'); ?>
 </div>
 
 </div>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        zoom: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }
+    });
+  </script>

@@ -4,20 +4,42 @@
 @import 'globals-modm';
 @import 'settings';
 
-// Sea Foam Settings
 
-$topbar-background: $primary-color;
-  
-$thumbnail-border: 4px solid $secondary-color;
-$thumbnail-shadow: none;
-$thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
+// ManOnDaMoon Settings
 
-$button-background: $secondary-color;
-$button-color: $primary-color;
+// Here
+
+.resource.show #swiper {
+	width: 100%;
+}
+
+.swiper-container {
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-zoom-container > img {
+	max-height: 40rem !important;
+}
 
 @import 'foundation-core';
 @import 'omeka';
 
-header a {
-  color: $white;
-}
