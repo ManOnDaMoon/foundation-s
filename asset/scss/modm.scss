@@ -40,6 +40,18 @@
 	max-height: 40rem !important;
 }
 
+.swiper-pagination-bullet-active {
+	--swiper-theme-color: #0a0a0a;
+}
+
+.swiper-button-disabled {
+	--swiper-theme-color: #767676;
+}
+
+.swiper-button-prev, .swiper-button-next {
+	--swiper-theme-color: #0a0a0a;
+}
+
 @import 'foundation-core';
 @import 'omeka';
 
