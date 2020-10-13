@@ -60,7 +60,7 @@ $sortHeadings = [
     <?php if (strpos($layoutSetting, 'toggle') !== false): ?>
     <div class="layout-toggle">
         <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid o-icon-grid" <?php echo $gridState; ?>></button>
-        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>        
+        <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list o-icon-list" <?php echo $listState; ?>></button>
     </div>
     <?php endif; ?>
     <?php echo $this->hyperlink($translate('Advanced search'), $this->url('site/resource', ['controller' => 'item', 'action' => 'search'], ['query' => $query], true), ['class' => 'advanced-search']); ?>
@@ -72,8 +72,12 @@ $sortHeadings = [
 <?php
 foreach ($items as $item):
     $heading = $headingTerm ? $item->value($headingTerm, ['default' => $translate('[Untitled]')]) : $item->displayTitle();
-    $body = $bodyTerm ? $item->value($bodyTerm) : $item->displayDescription();
-?>  
+
+    $bodyTerm = $this->siteSetting('browse_body_property_term', 'dcterms:description');
+    $bodyTermValue = $item->value($bodyTerm);
+    $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+    $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+?>
     <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
         <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
