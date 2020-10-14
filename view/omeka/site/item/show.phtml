@@ -7,8 +7,7 @@ $itemMedia = $item->media();
 $showLayout = $this->themeSetting('show_layout');
 
 
-$this->headScript()->prependFile('https://unpkg.com/swiper/swiper-bundle.js');
-$this->headLink()->prependStylesheet('https://unpkg.com/swiper/swiper-bundle.css');
+$this->headScript()->appendFile($this->assetUrl('js/swiper-bundle.min.js'));
 
 
 ?>

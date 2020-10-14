@@ -16,6 +16,12 @@ $button-color: $white;
 
 // SWIPER
 
+@import 'swiper/swiper';
+@import 'swiper/components/lazy/lazy';
+@import 'swiper/components/navigation/navigation';
+@import 'swiper/components/pagination/pagination';
+@import 'swiper/components/thumbs/thumbs';
+
 #swiper,
 #thumbnail-swiper {
 	width: 100%;
@@ -53,11 +59,11 @@ text-align: center;
 }
 
 .thumbs-slider img {
-	height: 5rem;
+	max-height: 5rem;
 }
 
 .swiper-zoom-container img {
-	height: 40rem !important;
+	height: 30rem !important;
 }
 
 .swiper-pagination-bullet-active {
