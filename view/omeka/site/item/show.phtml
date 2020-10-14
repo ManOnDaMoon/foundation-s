@@ -102,9 +102,9 @@ $this->headScript()->appendFile($this->assetUrl('js/swiper-bundle.min.js'));
 
 <script>
     var thumbnailSwiper = new Swiper('.thumbs-slider', {
-        slidesPerView: 5,
-        spaceBetween: 30,
-        centerSlides: true,
+        slidesPerView: <?php echo is_array($itemMedia) ? min(sizeof($itemMedia), 5) : sizeof($itemMedia); ?>,
+        centeredSlides: true,
+        autoScrollOffset: 1,
         pagination: false,
     });
 
