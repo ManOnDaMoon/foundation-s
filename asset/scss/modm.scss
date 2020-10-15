@@ -4,17 +4,35 @@
 @import 'globals-modm';
 @import 'settings';
 
-// ManOnDaMoon Settings
-$button-background: $secondary-color;
-$button-background-hover: $dark-gray;
-$button-color: $white;
+// #. ManOnDaMoon Settings
+// -----------------------
+
+// Top bar & menus
+$topbar-background: $primary-color;
+$topbar-submenu-background: $primary-color;
+
+$menu-item-color-active: $white;
+$menu-item-background-active: $secondary-color;
+
 $dropdownmenu-arrow-color: $white;
+$dropdownmenu-background: $primary-color;
+$dropdownmenu-submenu-background: $primary-color;
+$dropdownmenu-border: none;
+$dropdown-menu-item-color-active: $white;
+$dropdown-menu-item-background-active: $secondary-color;
+
+$button-background: $secondary-color;
+$button-background-hover: $light-gray; // #fcbe03 might be nice
+$button-color: $white;
 
 
 @import 'foundation-core';
 @import 'omeka';
 
-// ------ SWIPER
+
+// #. SwiperJS styles
+// ------------------
+
 
 @import 'swiper/swiper';
 @import 'swiper/components/lazy/lazy';
@@ -26,7 +44,7 @@ $dropdownmenu-arrow-color: $white;
 	z-index: 0 !important;
 }
 
-// ------ MEDIA SLIDER 
+// -- Media Slider
 
 .media-slider {
 	width: 100%;
@@ -38,7 +56,6 @@ $dropdownmenu-arrow-color: $white;
 	margin-left: auto;
 	margin-right: auto;
 }
-
 
 .swiper-pagination-bullet-active {
 	--swiper-pagination-color: #0a0a0a; // $primary-color not working here
@@ -52,8 +69,7 @@ $dropdownmenu-arrow-color: $white;
 	--swiper-theme-color: $primary-color;
 }
 
-
-// ------ THUMB SLIDER
+// -- Thumb Slider
 
 .thumbs-slider {
 	width: 100%;
@@ -65,13 +81,16 @@ $dropdownmenu-arrow-color: $white;
 .thumbs-slider .swiper-container{
   width: 100%;
 }
+
 .thumbs-slider .swiper-wrapper {
   width: 50%;
 }
+
 .thumbs-slider .swiper-slide {
   text-align: center;
   width: auto;
 }
+
 .thumbs-slider img {
   max-height: 4rem;
   @include thumbnail;
@@ -82,41 +101,22 @@ $dropdownmenu-arrow-color: $white;
 	box-shadow: 0 0 6px 1px rgba($primary-color, 0.5);
 }
 
-// LINKS
 
-.value a,
-span a,
-.browse-controls > a,
-.preview-header > a {
+// #. Content Links
+// ------------------
+
+#content .value a,
+#content span a,
+#content .browse-controls > a,
+#content .preview-header > a {
 	text-decoration: underline $secondary-color;	
 }
 
-.value a:hover,
-span a:hover,
-.browse-controls a:hover,
-.preview-header a:hover{
+#content .value a:hover,
+#content span a:hover,
+#content .browse-controls a:hover,
+#content .preview-header a:hover{
 	color: $secondary-color;
-}
-
-.menu a:hover,
-h3 a:hover,
-h4 a:hover,
-span a:hover {
-	color: $secondary-color
-}
-
-
-// THUMBNAIL BORDER
-
-.thumbnail, .media-list img {
-	box-shadow: none;
-}
-
-// HEADER COLOR
-
-.top-bar, .top-bar ul {
-	background-color: $primary-color;
-	color: $white;
 }
 
 .top-bar a {
@@ -127,13 +127,25 @@ span a:hover {
 	color: $secondary-color;
 }
 
-.dropdown.menu>li.is-active>a,
-.toc-block>ul.dropdown>li.is-active>a,
-.toc-block ul ul.dropdown>li.is-active>a {
-	color: $secondary-color;	
+.menu .active a {
+	background: $primary-color;
+    color: $white;
+    
+    &:hover {
+    	color: $secondary-color;
+    }
 }
 
-// SITE LOGIN
+// #. Thumbnail borders
+// ------------------
+
+.thumbnail, .media-list img {
+	box-shadow: none;
+}
+
+
+// #. Login Form
+// ------------------
 
 .site-login {
 	max-width: 400px; 
