@@ -20,50 +20,30 @@ $this->headScript()->appendFile($this->assetUrl('js/swiper-bundle.min.js'));
 <div class="grid-x">
 
     <?php if ($itemMedia): ?>
-    <div id="swiper">
-        <!-- Main Slider main container -->
         <div class="swiper-container media-slider">
-            <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
-
             <?php foreach ($itemMedia as $media): ?>
-
-                <!-- Slides -->
                 <div class="swiper-slide">
                 	<div class="swiper-zoom-container">
-              			<img class="swiper-lazy" data-src="<?php echo $media->originalUrl();?>" alt=""/>
+              			<img class="swiper-lazy" data-src="<?php echo $media->originalUrl();?>" alt="">
+              			<div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
               		</div>
-              		<div class="swiper-lazy-preloader"></div>
     			</div>
-
             <?php endforeach; ?>
             </div>
-            <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
-
-            <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
         </div>
-    </div>
-
-    <div id="thumbnail-swiper">
-        <!-- Main Slider main container -->
         <div class="swiper-container thumbs-slider">
-            <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
-
             <?php foreach ($itemMedia as $media): ?>
-
-                <!-- Slides -->
                 <div class="swiper-slide">
           			<img src="<?php echo $escape($media->thumbnailUrl('square')); ?>" alt=""/>
     			</div>
-
             <?php endforeach; ?>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 
 <div id="resource-values" class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
@@ -102,14 +82,14 @@ $this->headScript()->appendFile($this->assetUrl('js/swiper-bundle.min.js'));
 
 <script>
     var thumbnailSwiper = new Swiper('.thumbs-slider', {
-        slidesPerView: <?php echo is_array($itemMedia) ? min(sizeof($itemMedia), 5) : sizeof($itemMedia); ?>,
+        slidesPerView: 'auto',
+        spaceBetween: 30,
         centeredSlides: true,
         autoScrollOffset: 1,
         pagination: false,
     });
 
     var swiper = new Swiper('.media-slider', {
-        zoom: true,
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -118,12 +98,11 @@ $this->headScript()->appendFile($this->assetUrl('js/swiper-bundle.min.js'));
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
-     // Disable preloading of all images
         preloadImages: false,
-        // Enable lazy loading
         lazy: true,
         thumbs: {
             swiper: thumbnailSwiper
-          }
+          },
+        zoom: true,
     });
   </script>
