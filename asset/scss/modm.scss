@@ -11,15 +11,16 @@
 $topbar-background: $primary-color;
 $topbar-submenu-background: $primary-color;
 
+
 $menu-item-color-active: $white;
-$menu-item-background-active: $secondary-color;
+$menu-item-background-active: $primary-color;
 
 $dropdownmenu-arrow-color: $white;
 $dropdownmenu-background: $primary-color;
 $dropdownmenu-submenu-background: $primary-color;
 $dropdownmenu-border: none;
 $dropdown-menu-item-color-active: $white;
-$dropdown-menu-item-background-active: $secondary-color;
+$dropdown-menu-item-background-active: $primary-color;
 
 $button-background: $secondary-color;
 $button-background-hover: $light-gray; // #fcbe03 might be nice
@@ -108,14 +109,20 @@ $button-color: $white;
 #content .value a,
 #content span a,
 #content .browse-controls > a,
-#content .preview-header > a {
+#content .preview-header > a{
 	text-decoration: underline $secondary-color;	
+}
+
+#content .vertical.menu a {
+	font-size: 1.25rem;
 }
 
 #content .value a:hover,
 #content span a:hover,
 #content .browse-controls a:hover,
-#content .preview-header a:hover{
+#content .preview-header a:hover,
+#content .preview-block a:hover,
+#content .vertical.menu a:hover{
 	color: $secondary-color;
 }
 
