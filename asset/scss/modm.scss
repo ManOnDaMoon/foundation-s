@@ -31,84 +31,58 @@ $button-color: $white;
 @import 'omeka';
 
 
-// #. SwiperJS styles
+// #. Light Slider / Gallery
 // ------------------
 
-
-@import 'swiper/swiper';
-@import 'swiper/components/lazy/lazy';
-@import 'swiper/components/navigation/navigation';
-@import 'swiper/components/pagination/pagination';
-@import 'swiper/components/thumbs/thumbs';
-
-.swiper-container, .swiper-wrapper {
-	z-index: 0 !important;
-}
-
-// -- Media Slider
-
 .media-slider {
-	width: 100%;
-}
-
-.swiper-lazy-loaded {
-	display: block;
-	max-height: 30rem;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.swiper-pagination-bullet-active {
-	--swiper-pagination-color: #0a0a0a; // $primary-color not working here
-}
-
-.swiper-button-disabled {
-	--swiper-theme-color: $secondary-color;
-}
-
-.swiper-button-prev, .swiper-button-next {
-	--swiper-theme-color: $primary-color;
-}
-
-// -- Thumb Slider
-
-.thumbs-slider {
-	width: 100%;
-	padding: 1rem;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.thumbs-slider .swiper-container{
-  width: 100%;
-}
-
-.thumbs-slider .swiper-wrapper {
-  width: 50%;
-}
-
-.thumbs-slider .swiper-slide {
-  text-align: center;
-  width: auto;
-}
-
-.thumbs-slider img {
-  max-height: 4rem;
-  @include thumbnail;
-  width: auto;
-}
-
-.thumbs-slider img {
-	cursor:pointer;
-	&:hover {
-		box-shadow: 0 0 6px 1px rgba($secondary-color, 0.5);
+	width: auto;
+	max-width:100%;
+	
+	.vertical-menu & {
+		max-width: 800px;
+		min-width: 0;
 	}
+	
+	height: auto;
+	margin-right: auto;
+	margin-left: auto;
+
+	& .lSAction > a {
+		background-image: none !important;
+		font-size: 32px;
+		margin: auto;
+	}
+	
+	& li img {
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	
+	& .lSPager {
+		padding: 5px; //FIXME
+			
+		& li {
+			border-radius : 5px;
+			padding: 3px;
+			box-shadow: 0 0 3px 1px rgba($light-gray, 0.5);
+			
+			&.active {
+				box-shadow: 0 0 6px 1px rgba($secondary-color, 0.5);
+			}
+			
+			&:hover {
+				box-shadow: 0 0 6px 1px rgba($primary-color, 0.5);
+			}
+		}	
+	}
+
 }
 
-.thumbs-slider .swiper-slide-thumb-active img {
-	box-shadow: 0 0 6px 1px rgba($primary-color, 0.5);
-}
-
+/* .lSPager img { */
+/* 	height: 2rem !important; */
+/* 	width: auto !important; */
+/* } */
 
 // #. Content Links
 // ------------------
@@ -151,7 +125,7 @@ $button-color: $white;
 // #. Thumbnail borders
 // ------------------
 
-.thumbnail, .media-list img {
+.resource-grid .thumbnail, .media-list img {
 	box-shadow: none;
 }
 

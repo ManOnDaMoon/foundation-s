@@ -7,9 +7,12 @@ $itemMedia = $item->media();
 $showLayout = $this->themeSetting('show_layout');
 
 
-$this->headScript()->appendFile($this->assetUrl('js/swiper-bundle.min.js'));
-
-
+$this->headScript()->appendFile($this->assetUrl('js/lightslider.js'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/lightslider.css'));
+$this->headScript()->appendFile($this->assetUrl('js/lightgallery.js'));
+$this->headScript()->appendFile($this->assetUrl('js/lg-zoom.js'));
+$this->headScript()->appendFile($this->assetUrl('js/lg-fullscreen.js'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/lightgallery.css'));
 ?>
 
 <div class="resource-title">
@@ -20,29 +23,15 @@ $this->headScript()->appendFile($this->assetUrl('js/swiper-bundle.min.js'));
 <div class="grid-x">
 
 <?php if ($embedMedia && $itemMedia): ?>
-    <div class="swiper-container media-slider">
-        <div class="swiper-wrapper">
-        <?php foreach ($itemMedia as $media): ?>
-            <div class="swiper-slide">
-            	<div class="swiper-zoom-container">
-          			<img class="swiper-lazy" data-src="<?php echo $media->originalUrl();?>" alt="">
-          			<div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
-          		</div>
-			</div>
-        <?php endforeach; ?>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-    </div>
-    <div class="swiper-container thumbs-slider">
-        <div class="swiper-wrapper">
-        <?php foreach ($itemMedia as $media): ?>
-            <div class="swiper-slide">
-      			<img src="<?php echo $escape($media->thumbnailUrl('square')); ?>" alt=""/>
-			</div>
-        <?php endforeach; ?>
-        </div>
-    </div>
+    <div class="media-slider">
+    	<ul id="imageGallery">
+    	<?php foreach ($itemMedia as $media): ?>
+  			<li data-thumb="<?php echo $escape($media->thumbnailUrl('square')); ?>" data-src="<?php echo $media->originalUrl(); ?>">
+    			<img src="<?php echo $escape($media->thumbnailUrl('large')); ?>" />
+  			</li>
+  		<?php endforeach; ?>
+		</ul>
+	</div>
 <?php endif; ?>
 
 <?php if (!$embedMedia && $itemMedia): ?>
@@ -101,29 +90,25 @@ $this->headScript()->appendFile($this->assetUrl('js/swiper-bundle.min.js'));
 </div>
 
 <script>
-    var thumbnailSwiper = new Swiper('.thumbs-slider', {
-        slidesPerView: 'auto',
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoScrollOffset: 1,
-        pagination: false,
-    });
+	$(document).ready(function() {
+    var slider = $('#imageGallery').lightSlider({
+		prevHtml: '<span class="custom-prev-html" style="color: black"><i class="fas fa-chevron-left"></i></span>',
+		nextHtml: '<span class="custom-next-html" style="color: black"><i class="fas fa-chevron-right"></i></span',
+        gallery:true,
+        item:1,
+        adaptiveHeight: true,
+        thumbItem: 9,
+        thumbMargin: 15,
 
-    var swiper = new Swiper('.media-slider', {
-		slidesPerView: 1,
-//         pagination: {
-//             el: '.swiper-pagination',
-//             clickable: true,
-//         },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        preloadImages: false,
-        lazy: true,
-        thumbs: {
-            swiper: thumbnailSwiper
-          },
-        zoom: true,
+        onSliderLoad: function(el) {
+            el.lightGallery({
+                selector: '#imageGallery .lslide',
+                download: false,
+        		fullScreen: true,
+        		zoom: true,
+        		actualSize: true,
+            });
+        }
     });
+  });
   </script>
