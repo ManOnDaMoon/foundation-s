@@ -98,6 +98,13 @@ $button-color: $white;
   width: auto;
 }
 
+.thumbs-slider img {
+	cursor:pointer;
+	&:hover {
+		box-shadow: 0 0 6px 1px rgba($secondary-color, 0.5);
+	}
+}
+
 .thumbs-slider .swiper-slide-thumb-active img {
 	box-shadow: 0 0 6px 1px rgba($primary-color, 0.5);
 }
@@ -128,16 +135,14 @@ $button-color: $white;
 
 .top-bar a {
 	color: $white;
-}
-
-.top-bar a:hover {
-	color: $secondary-color;
+	&:hover {
+		color: $secondary-color;
+	}
 }
 
 .menu .active a {
 	background: $primary-color;
     color: $white;
-    
     &:hover {
     	color: $secondary-color;
     }
