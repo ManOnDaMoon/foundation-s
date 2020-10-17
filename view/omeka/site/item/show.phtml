@@ -20,8 +20,6 @@ $this->headLink()->prependStylesheet($this->assetUrl('css/lightgallery.css'));
 <h3 class="label"><?php echo $translate('Item'); ?></h3>
 </div>
 
-<div class="grid-x">
-
 <?php if ($embedMedia && $itemMedia): ?>
     <div class="media-slider">
     	<ul id="imageGallery">
@@ -42,6 +40,7 @@ $this->headLink()->prependStylesheet($this->assetUrl('css/lightgallery.css'));
 </div>
 <?php endif; ?>
 
+<div class="grid-x">
 <div id="resource-values" class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
     <?php $this->trigger('view.show.before'); ?>
     <?php echo $item->displayValues(); ?>
@@ -97,8 +96,25 @@ $this->headLink()->prependStylesheet($this->assetUrl('css/lightgallery.css'));
         gallery:true,
         item:1,
         adaptiveHeight: true,
-        thumbItem: 9,
-        thumbMargin: 15,
+        thumbItem: 8,
+        thumbMargin: 30,
+
+        responsive : [
+            {
+                breakpoint:800,
+                settings: {
+                    thumbItem:5,
+                    slideMargin:10,
+                  }
+            },
+            {
+                breakpoint: 520,
+                settings: {
+                    thumbItem:4,
+                    slideMargin: 5,
+                  }
+            }
+        ],
 
         onSliderLoad: function(el) {
             el.lightGallery({
