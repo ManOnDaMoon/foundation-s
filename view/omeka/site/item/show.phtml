@@ -60,7 +60,7 @@ $this->headLink()->prependStylesheet($this->assetUrl('css/lightgallery.css'));
 
 	<?php if (($this->siteSetting('show_attached_pages', true)) && ($sitePages = $item->sitePages($site->id()))): ?>
 		<div class="site-pages">
-    		<h3><?php echo $translate('Site pages'); ?></h3>
+			<h3>À lire sur le site :</h3>
 			<dl>
         		<?php foreach ($sitePages as $sitePage): ?>
         		<dd class="value"><?php echo $sitePage->link($sitePage->title()); ?></dd>
