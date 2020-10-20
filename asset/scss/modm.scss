@@ -65,6 +65,11 @@ $button-color: $white;
 			border-radius : 0 !important;
 			& img {
 				padding: 5px;
+				transition: transform .2s;
+				
+				&:hover {
+					transform: scale(1.1);
+				}
 			}
 		}
 	}
@@ -128,3 +133,39 @@ $button-color: $white;
 .site-login {
 	max-width: 400px; 
 }
+
+
+// #. Knightlab Timeline
+// ------------------
+
+.tl-timeline-modm {
+	
+	position: relative;
+	box-sizing: content-box;
+	
+	& .tl-media {
+		width: auto !important;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	
+	& .tl-media-content {
+		box-shadow: none;
+		&:hover {
+			box-shadow: 0 0 6px 1px rgba($primary-color, 0.5);
+		}
+	}	
+	
+	& .tl-media-shadow {
+		box-shadow: none;
+	}
+	
+	& .tl-headline a:hover {
+		color: $secondary-color;
+	}
+	
+	& .tl-storyslider {
+		box-shadow: none !important;
+	}
+}
+
