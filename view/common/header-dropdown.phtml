@@ -11,8 +11,10 @@
     </nav>
     <div class="top-bar-right" id="responsive-menu">
         <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'dropdown']); ?>
-        <div class="search">
-            <?php echo $this->partial('common/search-form'); ?>
-        </div>
+        <?php if (!isset($isLogin)): ?>
+            <div class="search">
+                <?php echo $this->partial('common/search-form'); ?>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
