@@ -169,3 +169,16 @@ $button-color: $white;
 	}
 }
 
+// #. Resource controls
+// ------------------
+
+#resource-controls {
+	order: 1;
+  @include xy-cell(8);
+  margin-left: 0;
+  
+  @include breakpoint(medium down) {
+    width: 100%;
+    margin-right: 0;
+  }
+}

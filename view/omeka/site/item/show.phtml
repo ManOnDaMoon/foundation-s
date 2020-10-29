@@ -41,6 +41,13 @@ $this->headLink()->prependStylesheet($this->assetUrl('css/lightgallery.css'));
 <?php endif; ?>
 
 <div class="grid-x">
+
+<div id="resource-controls">
+	<?php if ($item->userIsAllowed('update')): ?>
+    <a target="_blank" href="<?php echo $item->adminUrl('edit'); ?>" class="button"><?php echo $translate('Edit item'); ?></a>
+    <?php endif; ?>
+</div>
+
 <div id="resource-values" class="<?php echo ($showLayout == 'inline') ? 'inline' : 'stack'; ?>">
     <?php $this->trigger('view.show.before'); ?>
     <?php echo $item->displayValues(); ?>
