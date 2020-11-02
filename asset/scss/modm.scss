@@ -86,6 +86,7 @@ $button-color: $white;
 
 #content .value > a,
 #content span a,
+#content p > a,
 #content .browse-controls > a,
 #content .preview-header > a{
 	text-decoration: underline $secondary-color;	
@@ -100,7 +101,8 @@ $button-color: $white;
 #content .browse-controls a:hover,
 #content .preview-header a:hover,
 #content .preview-block a:hover,
-#content .vertical.menu a:hover{
+#content .vertical.menu a:hover,
+a.resource-link:hover{
 	color: $secondary-color;
 }
 
