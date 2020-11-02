@@ -23,7 +23,7 @@ $dropdown-menu-item-color-active: $white;
 $dropdown-menu-item-background-active: $primary-color;
 
 $button-background: $secondary-color;
-$button-background-hover: $light-gray; // #fcbe03 might be nice
+$button-background-hover: #fcbe03; //$light-gray; // #fcbe03 might be nice
 $button-color: $white;
 
 
@@ -87,7 +87,7 @@ $button-color: $white;
 #content .value > a,
 #content span a,
 #content p > a,
-#content .browse-controls > a,
+#content .browse-controls a.advanced-search,
 #content .preview-header > a{
 	text-decoration: underline $secondary-color;	
 }
@@ -99,7 +99,7 @@ $button-color: $white;
 #content .value a:hover,
 #content span a:hover,
 #content p > a:hover,
-#content .browse-controls a:hover,
+#content .browse-controls a.advanced-search:hover,
 #content .preview-header a:hover,
 #content .preview-block a:hover,
 #content .vertical.menu a:hover,
