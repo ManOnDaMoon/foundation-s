@@ -86,7 +86,7 @@ $button-color: $white;
 
 #content .value > a,
 #content span a,
-#content p > a,
+#content p a,
 #content .browse-controls a.advanced-search,
 #content .preview-header > a{
 	text-decoration: underline $secondary-color;	
@@ -98,7 +98,7 @@ $button-color: $white;
 
 #content .value a:hover,
 #content span a:hover,
-#content p > a:hover,
+#content p a:hover,
 #content .browse-controls a.advanced-search:hover,
 #content .preview-header a:hover,
 #content .preview-block a:hover,
