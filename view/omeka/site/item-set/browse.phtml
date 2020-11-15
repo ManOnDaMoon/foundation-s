@@ -35,7 +35,7 @@ $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse')
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 foreach ($itemSets as $itemSet):
-    $heading = $headingTerm ? $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]) : $itemSet->displayTitle();
+$heading = $headingTerm ? $itemSet->value($headingTerm, ['default' => $translate('[Untitled]'), 'lang' => $this->lang()]) : $itemSet->displayTitle();
     $body = $bodyTerm ? $itemSet->value($bodyTerm) : $itemSet->displayDescription();
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
