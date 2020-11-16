@@ -107,19 +107,70 @@ a.resource-link:hover{
 	color: $secondary-color;
 }
 
-.top-bar a {
-	color: $white;
-	&:hover {
-		color: $secondary-color;
+.top-bar {
+	& a { // For site title
+		transition: .15s;
+		color: $white;
 	}
-}
 
-.menu .active a {
-	background: $primary-color;
-    color: $white;
-    &:hover {
-    	color: $secondary-color;
-    }
+	
+	& .dropdown.menu { // Main drop down menu
+	
+		// Main Menu only
+		// .active : current section
+		& > li > a,
+		& > li.active > a {
+			background-color: $primary-color;
+		    color: $white;
+		    transition: .15s;
+		    
+		    &:hover {
+				background-color: #fcbe03 !important;
+				color: $primary-color;
+				transition: .15s;
+			}
+		}
+		
+		// .is-active : currently browsed menu header
+		& > li.is-active > a {
+			background-color: #fcbe03 !important;
+			color: $primary-color !important;
+			transition: .15s;
+			
+			&::after {
+				border-color: $primary-color transparent transparent;
+				transition: .15s;
+			}
+		}
+		
+		// Submenus
+		& .submenu {
+			& li > a,
+			& li.active > a {
+				background-color: $primary-color;
+			    color: $white;
+			    transition: .15s;
+			    
+			    &:hover {
+					background-color: #fcbe03 !important;
+					color: $primary-color;
+					transition: .15s;
+				}
+			}
+			
+			// .is-active : currently browsed menu header
+			& li.is-active > a {
+				background-color: #fcbe03 !important;
+				color: $primary-color !important;
+				transition: .15s;
+				
+				&::after {
+					border-color: transparent $primary-color transparent transparent;
+					transition: .15s;
+				}
+			}
+		}
+	} 
 }
 
 // #. Thumbnail borders
