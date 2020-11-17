@@ -7,6 +7,8 @@
 // #. ManOnDaMoon Settings
 // -----------------------
 
+$modm-color: #F8B532; // #F8B532 is Kodak Yellow
+
 // Top bar & menus
 $topbar-background: $primary-color;
 $topbar-submenu-background: $primary-color;
@@ -23,8 +25,9 @@ $dropdown-menu-item-color-active: $white;
 $dropdown-menu-item-background-active: $primary-color;
 
 $button-background: $secondary-color;
-$button-background-hover: #fcbe03; //$light-gray; // #fcbe03 might be nice
+$button-background-hover: $modm-color; 
 $button-color: $white;
+
 
 
 @import 'foundation-core';
@@ -125,7 +128,7 @@ a.resource-link:hover{
 		    transition: .15s;
 		    
 		    &:hover {
-				background-color: #fcbe03 !important;
+				background-color: $modm-color !important;
 				color: $primary-color;
 				transition: .15s;
 			}
@@ -133,7 +136,7 @@ a.resource-link:hover{
 		
 		// .is-active : currently browsed menu header
 		& > li.is-active > a {
-			background-color: #fcbe03 !important;
+			background-color: $modm-color !important;
 			color: $primary-color !important;
 			transition: .15s;
 			
@@ -152,7 +155,7 @@ a.resource-link:hover{
 			    transition: .15s;
 			    
 			    &:hover {
-					background-color: #fcbe03 !important;
+					background-color: $modm-color !important;
 					color: $primary-color;
 					transition: .15s;
 				}
@@ -160,7 +163,7 @@ a.resource-link:hover{
 			
 			// .is-active : currently browsed menu header
 			& li.is-active > a {
-				background-color: #fcbe03 !important;
+				background-color: $modm-color !important;
 				color: $primary-color !important;
 				transition: .15s;
 				
@@ -172,6 +175,7 @@ a.resource-link:hover{
 		}
 	} 
 }
+
 
 // #. Thumbnail borders
 // ------------------
