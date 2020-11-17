@@ -112,7 +112,7 @@ a.resource-link:hover{
 
 .vertical.menu {
 	& .active>a {
-		background: $light-gray;
+		background: transparent;
 		color: $primary-color;
 	}
 
