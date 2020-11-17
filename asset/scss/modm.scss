@@ -110,6 +110,17 @@ a.resource-link:hover{
 	color: $secondary-color;
 }
 
+.vertical.menu {
+	& .active>a {
+		background: $light-gray;
+		color: $primary-color;
+	}
+
+	& .submenu-toggle::after {
+		border-color: $primary-color transparent transparent;
+	}
+}
+
 .top-bar {
 	& a { // For site title
 		transition: .15s;
