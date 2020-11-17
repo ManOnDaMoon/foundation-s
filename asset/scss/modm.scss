@@ -176,6 +176,13 @@ a.resource-link:hover{
 	} 
 }
 
+.dropdown.menu > li.is-dropdown-submenu-parent > a:after {
+  margin-right: .5 * $global-margin;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a {
+  padding-right: 2 * $global-padding;
+}
 
 // #. Thumbnail borders
 // ------------------
