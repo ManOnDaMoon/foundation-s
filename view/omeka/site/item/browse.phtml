@@ -84,10 +84,27 @@ $lang = $this->lang();
 foreach ($items as $item):
     $heading = $headingTerm ? $item->value($headingTerm, ['default' => $translate('[Untitled]')]) : $item->displayTitle();
 
-    $bodyTerm = $this->siteSetting('browse_body_property_term', 'dcterms:description');
-    $bodyTermValue = $item->value($bodyTerm);
-    $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
-    $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+    $body = null;
+    if ($bodyTerm) {
+        $bodyTermValue = $item->value($bodyTerm);
+        $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+        $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+    } else {
+        // Based on resource template
+        $template = $item->resourceTemplate();
+        if ($template && $template->descriptionProperty()) {
+            if (!($bodyTermValue = $item->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+                $bodyTermValue = $item->value($template->descriptionProperty()->term());
+            }
+            if (null !== $bodyTermValue) {
+                $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+                $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle() : $bodyTermValue;
+            }
+        }
+    }
+    if (!$body) {
+        $body = $item->displayDescription();
+    }
 
 ?>
     <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
