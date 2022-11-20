@@ -4,6 +4,10 @@ $stylesheet = $this->themeSetting('stylesheet');
 $this->htmlElement('html')->setAttribute('lang', $this->lang());
 $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
+
+// MODM : For apple iOS full screen
+$this->headMeta()->appendName("apple-mobile-web-app-capable", "yes");
+
 $this->headTitle($this->setting('installation_title', 'Omeka S'))->setSeparator(' · ');
 if (isset($stylesheet)) {
     $this->headLink()->prependStylesheet($this->assetUrl("css/$stylesheet.css"));    
@@ -11,6 +15,10 @@ if (isset($stylesheet)) {
     $this->headLink()->prependStylesheet($this->assetUrl('css/default.css'));
 }
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
+
+// MODM : For apple iOS icon
+$this->headLink(['href' => "/apple-touch-icon.png", 'rel' => "apple-touch-icon"]);
+
 $this->headScript()->prependFile($this->assetUrl('vendor/foundation/foundation.min.js'));
 $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
