@@ -1,0 +1,241 @@
+@charset 'utf-8';
+
+@import 'globals-default';
+@import 'globals-modm';
+@import 'settings';
+
+// #. ManOnDaMoon Settings
+// -----------------------
+
+$modm-color: #F8B532; // #F8B532 is Kodak Yellow
+
+// Top bar & menus
+$topbar-background: $primary-color;
+$topbar-submenu-background: $primary-color;
+
+
+$menu-item-color-active: $white;
+$menu-item-background-active: $primary-color;
+
+$dropdownmenu-arrow-color: $white;
+$dropdownmenu-background: $primary-color;
+$dropdownmenu-submenu-background: $primary-color;
+$dropdownmenu-border: none;
+$dropdown-menu-item-color-active: $white;
+$dropdown-menu-item-background-active: $primary-color;
+
+$button-background: $secondary-color;
+$button-background-hover: $modm-color; 
+$button-color: $white;
+
+
+
+@import 'foundation-core';
+@import 'omeka';
+
+
+// #. Light Slider / Gallery
+// ------------------
+
+#itemfiles {
+  height: 100vh;
+}
+
+#itemfiles .lg-backdrop,
+#itemfiles .lg-outer,
+#itemfiles .lg-thumb-outer {
+  background-color: white;
+}
+
+.lg-outer .lg-thumb-item.active,
+.lg-outer .lg-thumb-item:hover {
+	border-color: $modm-color !important;
+}
+
+.lg-next, .lg-prev {
+	color: white !important;
+}
+
+// #. Content Links
+// ------------------
+
+#content .value > a,
+#content span a,
+#content p a,
+#content .browse-controls a.advanced-search,
+#content .preview-header > a{
+	text-decoration: underline $secondary-color;	
+}
+
+#content .vertical.menu a {
+	font-size: 1.25rem;
+}
+
+#content .value a:hover,
+#content span a:hover,
+#content p a:hover,
+#content .browse-controls a.advanced-search:hover,
+#content .preview-header a:hover,
+#content .preview-block a:hover,
+#content .vertical.menu a:hover,
+a.resource-link:hover{
+	color: $secondary-color;
+}
+
+.vertical.menu {
+	& .active>a {
+		background: transparent;
+		color: $primary-color;
+	}
+
+	& .submenu-toggle::after {
+		border-color: $primary-color transparent transparent;
+	}
+}
+
+.top-bar {
+	& a { // For site title
+		transition: .15s;
+		color: $white;
+	}
+
+	
+	& .dropdown.menu { // Main drop down menu
+	
+		// Main Menu only
+		// .active : current section
+		& > li > a,
+		& > li.active > a {
+			background-color: $primary-color;
+		    color: $white;
+		    transition: .15s;
+		    
+		    &:hover {
+				background-color: $modm-color !important;
+				color: $primary-color;
+				transition: .15s;
+			}
+		}
+		
+		// .is-active : currently browsed menu header
+		& > li.is-active > a {
+			background-color: $modm-color !important;
+			color: $primary-color !important;
+			transition: .15s;
+			
+			&::after {
+				border-color: $primary-color transparent transparent;
+				transition: .15s;
+			}
+		}
+		
+		// Submenus
+		& .submenu {
+			& li > a,
+			& li.active > a {
+				background-color: $primary-color;
+			    color: $white;
+			    transition: .15s;
+			    
+			    &:hover {
+					background-color: $modm-color !important;
+					color: $primary-color;
+					transition: .15s;
+				}
+			}
+			
+			// .is-active : currently browsed menu header
+			& li.is-active > a {
+				background-color: $modm-color !important;
+				color: $primary-color !important;
+				transition: .15s;
+				
+				&::after {
+					border-color: transparent $primary-color transparent transparent;
+					transition: .15s;
+				}
+			}
+		}
+	} 
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a:after {
+  margin-right: .5 * $global-margin;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a {
+  padding-right: 2 * $global-padding;
+}
+
+// #. Thumbnail borders
+// ------------------
+
+.resource-grid .thumbnail, .media-list img {
+	box-shadow: none;
+}
+
+.results {
+	.resource-link img {
+	  @include thumbnail;
+	  height: ($paragraph-lineheight * 4rem);
+	  width: auto;
+	  min-width: 1px;
+	  margin: 0 (.5 * $global-margin) 0 0;
+	}
+}
+
+// #. Login Form
+// ------------------
+
+.site-login {
+	max-width: 400px; 
+}
+
+
+// #. Knightlab Timeline
+// ------------------
+
+.tl-timeline-modm {
+	
+	position: relative;
+	box-sizing: content-box;
+	
+	& .tl-media {
+		width: auto !important;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	
+	& .tl-media-content {
+		box-shadow: none;
+		&:hover {
+			box-shadow: 0 0 6px 1px rgba($primary-color, 0.5);
+		}
+	}	
+	
+	& .tl-media-shadow {
+		box-shadow: none;
+	}
+	
+	& .tl-headline a:hover {
+		color: $secondary-color;
+	}
+	
+	& .tl-storyslider {
+		box-shadow: none !important;
+	}
+}
+
+// #. Resource controls
+// ------------------
+
+#resource-controls {
+	order: 1;
+  @include xy-cell(8);
+  margin-left: 0;
+  
+  @include breakpoint(medium down) {
+    width: 100%;
+    margin-right: 0;
+  }
+}
