@@ -38,22 +38,22 @@ $button-color: $white;
 // ------------------
 
 #itemfiles {
-  height: 100vh;
-}
+	height: 90vh;
 
-#itemfiles .lg-backdrop,
-#itemfiles .lg-outer,
-#itemfiles .lg-thumb-outer {
-  background-color: white;
-}
-
-.lg-outer .lg-thumb-item.active,
-.lg-outer .lg-thumb-item:hover {
-	border-color: $modm-color !important;
-}
-
-.lg-next, .lg-prev {
-	color: white !important;
+	.lg-backdrop,
+	.lg-outer,
+	.lg-thumb-outer {
+	  background-color: white;
+	}
+	
+	.lg-outer .lg-thumb-item.active,
+	.lg-outer .lg-thumb-item:hover {
+		border-color: $modm-color !important;
+	}
+	
+	.lg-next, .lg-prev {
+		color: white !important;
+	}
 }
 
 // #. Content Links
