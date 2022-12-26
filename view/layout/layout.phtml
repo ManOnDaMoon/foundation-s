@@ -13,6 +13,13 @@ if (isset($stylesheet)) {
     $this->headLink()->appendStylesheet($this->assetUrl('css/default.css'));
 }
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
+
+// MODM : For apple iOS icon
+$this->headLink(['href' => "/apple-touch-icon.png", 'rel' => "apple-touch-icon"]);
+// MODM : For apple iOS full screen
+$this->headLink(['href' => "/manifest.webmanifest", 'rel' => "manifest"]);
+// \MODM
+
 $this->headScript()->prependFile($this->assetUrl('vendor/foundation/foundation.min.js'));
 $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));

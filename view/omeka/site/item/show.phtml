@@ -9,6 +9,11 @@ $showLayout = $this->themeSetting('show_layout');
 $mediaDisplay = $this->themeSetting('media_display');
 $this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
 
+// MODM
+$filterLocale = (bool) $this->siteSetting('filter_locale_values');
+$lang = $this->lang();
+// \MODM
+
 $fullWidthMainBlockContent = $this->resourcePageBlocks($item, 'full_width_main');
 $fullWidthMainHasBlocks = $fullWidthMainBlockContent->hasBlocks();
 $mainWithSidebarBlockContent = $this->resourcePageBlocks($item);
@@ -33,6 +38,14 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
     <?php if ($fullWidthMainHasBlocks): ?>
     <div class="full-width-main">
         <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
+        <!--  MODM -->   
+        <!-- TODO: Déplacer dans une sidebar? --> 	
+    	<div id="resource-controls">
+        	<?php if ($item->userIsAllowed('update')): ?>
+            <a target="_blank" href="<?php echo $item->adminUrl('edit'); ?>" class="button"><?php echo $translate('Edit item'); ?></a>
+            <?php endif; ?>
+        </div>
+    	<!-- \MODM -->
     </div>
     <?php endif; ?>
 

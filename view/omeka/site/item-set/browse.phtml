@@ -15,6 +15,7 @@ $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
 $valueLang = $filterLocale ? [$lang, ''] : null;
 
+
 $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse');
 ?>
 
@@ -40,16 +41,63 @@ $this->htmlElement('body')->appendAttribute('class', 'item-set resource browse')
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
 <?php
 foreach ($itemSets as $itemSet):
-    $heading = $headingTerm ? $itemSet->value($headingTerm, ['default' => $translate('[Untitled]'), 'lang' => $valueLang]) : $itemSet->displayTitle(null, $valueLang);
-    $body = $bodyTerm ? $itemSet->value($bodyTerm, ['lang' => $valueLang]) : $itemSet->displayDescription(null, $valueLang);
+
+//** BEGIN MODM MODIFICATION **/
+$heading = $headingTerm ? $itemSet->value($headingTerm, ['default' => $translate('[Untitled]')]) : $itemSet->displayTitle(null, ($filterLocale ? [$lang, ''] : null));
+$body = null;
+if ($bodyTerm) {
+    $bodyTermValue = $itemSet->value($bodyTerm);
+    $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+    $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle(null, ($filterLocale ? [$lang, ''] : null)) : $bodyTermValue;
+} else {
+    // Based on resource template
+    $template = $itemSet->resourceTemplate();
+    if ($template && $template->descriptionProperty()) {
+        if (($filterLocale == 0) || !($bodyTermValue = $itemSet->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+            $bodyTermValue = $itemSet->value($template->descriptionProperty()->term());
+        }
+        if (null !== $bodyTermValue) {
+            $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+            if ($bodyTermValue && $bodyResource) {
+                if ($headingTerm) {
+                    if (! ($body = $bodyResource->value($headingTerm, ['lang' => $lang]))) {
+                        $body = $bodyResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
+                    }
+                } else {
+                    $template = $bodyResource->resourceTemplate();
+                    if ($template && $template->titleProperty()) {
+                        if (($filterLocale == 0)
+                            || ! ($body = $bodyResource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                                $body = $bodyResource->value($template->titleProperty()->term());
+                            }
+                    }
+                }
+                if (!$body) {
+                    $body = $bodyResource->displayTitle(null, ($filterLocale ? [$lang, ''] : null));
+                }
+            } else {
+                $body = $bodyTermValue;
+            }
+        }
+    }
+}
+if (!$body) {
+    $body = $itemSet->displayDescription(null, ($filterLocale ? [$lang, ''] : null));
+}
+//** END MODM MODIFICATION **/
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
             <?php
+<!--<<<<<<< HEAD
             $linkContent = sprintf('%s<span class="resource-name">%s</span>',
                 $thumbnail($itemSet, 'medium'),
                 $escape($heading));
             echo $itemSet->linkRaw($linkContent, null, ['class' => 'resource-link']);
+======= -->
+                // MODM
+                echo $itemSet->linkPretty('medium', $heading, null, null, $lang);
+                // \MODM
             ?>
             <?php if ($body): ?>
             <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>

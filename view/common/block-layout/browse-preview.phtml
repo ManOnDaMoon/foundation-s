@@ -48,10 +48,51 @@ $showHeading = in_array('resource-heading', $this->components);
 $showBody = in_array('resource-body', $this->components);
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
-foreach ($resources as $resource):
-    $thumbnail = $this->thumbnail($resource, 'medium');
-    $heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]'), 'lang' => $valueLang]) : $resource->displayTitle(null, $valueLang);
-    $body = $bodyTerm ? $resource->value($bodyTerm, ['lang' => $valueLang]) : $resource->displayDescription(null, $valueLang);
+foreach ($this->resources as $resource):
+
+//** BEGIN MODM MODIFICATION **/
+$heading = $headingTerm ? $resource->value($headingTerm, ['default' => $translate('[Untitled]')]) : $resource->displayTitle(null, ($filterLocale ? $lang : null));
+$body = null;
+if ($bodyTerm) {
+    $bodyTermValue = $resource->value($bodyTerm);
+    $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+    $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle(null, ($filterLocale ? [$lang, ''] : null)) : $bodyTermValue;
+} else {
+    // Based on resource template
+    $template = $resource->resourceTemplate();
+    if ($template && $template->descriptionProperty()) {
+        if (($filterLocale == 0) || !($bodyTermValue = $resource->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+            $bodyTermValue = $resource->value($template->descriptionProperty()->term());
+        }
+        if (null !== $bodyTermValue) {
+            $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+            if ($bodyTermValue && $bodyResource) {
+                if ($headingTerm) {
+                    if (! ($body = $bodyResource->value($headingTerm, ['lang' => $lang]))) {
+                        $body = $bodyResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
+                    }
+                } else {
+                    $template = $bodyResource->resourceTemplate();
+                    if ($template && $template->titleProperty()) {
+                        if (($filterLocale == 0)
+                            || ! ($body = $bodyResource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                                $body = $bodyResource->value($template->titleProperty()->term());
+                            }
+                    }
+                }
+                if (!$body) {
+                    $body = $bodyResource->displayTitle(null, ($filterLocale ? [$lang, ''] : null));
+                }
+            } else {
+                $body = $bodyTermValue;
+            }
+        }
+    }
+}
+if (!$body) {
+    $body = $resource->displayDescription(null, ($filterLocale ? [$lang, ''] : null));
+}
+//** END MODM MODIFICATION **/
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <?php if ($showThumbnail && $thumbnail): ?>
