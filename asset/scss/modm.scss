@@ -227,6 +227,20 @@ a.resource-link:hover{
 	}
 }
 
+
+// #. Resource show
+// ------------------
+
+.resource-title {
+
+	& .subhead {
+		margin: 0 .5em 0 0;
+		color: $secondary-color;
+		font-style: italic;
+	}
+}
+
+
 // #. Resource controls
 // ------------------
 
