@@ -24,12 +24,59 @@ $rightSidebarBlockContent = $this->resourcePageBlocks($item, 'right');
 $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
 
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
-$lang = $this->lang();
 $valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 
 <div class="resource-title">
 <?php echo $this->pageTitle($item->displayTitle(null, $valueLang), 2); ?>
+
+// BEGIN MODM MODIFICATION
+$headingTerm = $this->siteSetting('browse_heading_property_term');
+$bodyTerm = $this->siteSetting('browse_body_property_term');
+$body = null;
+if ($bodyTerm) {
+    $bodyTermValue = $item->value($bodyTerm);
+    $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+    $body = ($bodyTermValue && $bodyResource) ? $bodyResource->displayTitle(null, ($filterLocale ? [$lang, ''] : null)) : $bodyTermValue;
+} else {
+    // Based on resource template
+    $template = $item->resourceTemplate();
+    if ($template && $template->descriptionProperty()) {
+        if (($filterLocale == 0) || !($bodyTermValue = $item->value($template->descriptionProperty()->term(), ['lang' => $lang]))) {
+            $bodyTermValue = $item->value($template->descriptionProperty()->term());
+        }
+        if (null !== $bodyTermValue) {
+            $bodyResource = $bodyTermValue ? $bodyTermValue->valueResource() : null;
+            if ($bodyTermValue && $bodyResource) {
+                if ($headingTerm) {
+                    if (! ($body = $bodyResource->value($headingTerm, ['lang' => $lang]))) {
+                        $body = $bodyResource->value($headingTerm, ['default' => $translate('[Untitled]')]);
+                    }
+                } else {
+                    $template = $bodyResource->resourceTemplate();
+                    if ($template && $template->titleProperty()) {
+                        if (($filterLocale == 0)
+                            || ! ($body = $bodyResource->value($template->titleProperty()->term(), ['lang' => $lang]))) {
+                                $body = $bodyResource->value($template->titleProperty()->term());
+                            }
+                    }
+                }
+                if (!$body) {
+                    $body = $bodyResource->displayTitle(null, ($filterLocale ? [$lang, ''] : null));
+                }
+            } else {
+                $body = $bodyTermValue;
+            }
+        }
+    }
+}
+// END MODM MODIFICATION
+?>
+
+<div class="resource-title">
+<!--  MODM - Ajout description dans le titre -->
+<?php echo $this->pageTitle($item->displayTitle(null, ($filterLocale ? $lang : null)), 2, ($body ? $escape($body) : '')); ?>
+<!--  /MODM -->
 <h3 class="label"><?php echo $translate('Item'); ?></h3>
 </div>
 
