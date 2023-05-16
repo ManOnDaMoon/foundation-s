@@ -84,26 +84,32 @@ if ($bodyTerm) {
 if (!$body) {
     $body = $itemSet->displayDescription(null, ($filterLocale ? [$lang, ''] : null));
 }
-//** END MODM MODIFICATION **/
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
+        <?php if ($thumbnail = $this->thumbnail($itemSet, 'medium')): ?>
+        <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
+            <?php echo $itemSet->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
+        </div>
+        <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
             <?php
-<!--<<<<<<< HEAD
+<!--
             $linkContent = sprintf('%s<span class="resource-name">%s</span>',
                 $thumbnail($itemSet, 'medium'),
                 $escape($heading));
             echo $itemSet->linkRaw($linkContent, null, ['class' => 'resource-link']);
-======= -->
+ -->
                 // MODM
                 echo $itemSet->linkPretty('medium', $heading, null, null, $lang);
                 // \MODM
             ?>
+<!--            <h4><?php echo $itemSet->link($heading); ?></h4> -->
             <?php if ($body): ?>
-            <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
+            <div class="description"><?php echo $escape($body); ?></div>
             <?php endif; ?>
         </div>
     </li>
+<?php //** END MODM MODIFICATION **/ ?>
 <?php endforeach; ?>
 </ul>
 <?php $this->trigger('view.browse.after'); ?>
