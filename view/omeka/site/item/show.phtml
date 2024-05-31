@@ -27,9 +27,7 @@ $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $valueLang = $filterLocale ? [$lang, ''] : null;
 ?>
 
-<div class="resource-title">
-<?php echo $this->pageTitle($item->displayTitle(null, $valueLang), 2); ?>
-
+<?php
 // BEGIN MODM MODIFICATION
 $headingTerm = $this->siteSetting('browse_heading_property_term');
 $bodyTerm = $this->siteSetting('browse_body_property_term');
@@ -85,8 +83,8 @@ if ($bodyTerm) {
     <?php if ($fullWidthMainHasBlocks): ?>
     <div class="full-width-main">
         <?php echo $fullWidthMainBlockContent->getBlocks(); ?>
-        <!--  MODM -->   
-        <!-- TODO: Déplacer dans une sidebar? --> 	
+        <!--  MODM -->
+        <!-- TODO: Déplacer dans une sidebar? -->
     	<div id="resource-controls">
         	<?php if ($item->userIsAllowed('update')): ?>
             <a target="_blank" href="<?php echo $item->adminUrl('edit'); ?>" class="button"><?php echo $translate('Edit item'); ?></a>
@@ -97,8 +95,8 @@ if ($bodyTerm) {
     <?php endif; ?>
 
     <?php if ($mainWithSidebarHasBlocks || $leftSidebarHasBlocks || $rightSidebarHasBlocks): ?>
-    
-    <?php 
+
+    <?php
     if ($leftSidebarHasBlocks && $rightSidebarHasBlocks) {
         $sidebarWidth = '3';
         $mainWidth = '6';
@@ -107,7 +105,7 @@ if ($bodyTerm) {
         $mainWidth = '8';
     }
     ?>
-    
+
     <div class="grid-x grid-margin-x">
         <?php if ($leftSidebarHasBlocks): ?>
         <div class="left-sidebar cell medium-<?php echo $sidebarWidth; ?>">

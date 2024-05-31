@@ -68,7 +68,7 @@ $sortHeadings = [
         <?php if ($mainWithSidebarHasBlocks || $leftSidebarHasBlocks || $rightSidebarHasBlocks): ?>
 
         <?php $sidebarWidth = ($leftSidebarHasBlocks && $rightSidebarHasBlocks) ? '2' : '4'; ?>
-        
+
         <div class="grid-x grid-margin-x">
             <?php if ($leftSidebarHasBlocks): ?>
             <div class="left-sidebar cell medium-<?php echo $sidebarWidth; ?>">
@@ -161,22 +161,13 @@ foreach ($items as $item):
     }
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($thumbnail = $this->thumbnail($item, 'medium')): ?>
-        <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php echo $item->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
-        </div>
-        <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
             <?php
-<!--            $linkContent = sprintf('%s<span class="resource-name">%s</span>',
-                $thumbnail($item, 'medium'),
-                $escape($heading));
-            echo $item->linkRaw($linkContent, null, ['class' => 'resource-link']); -->
-                // MODM
-                echo $item->linkPretty('medium', $heading, null, null, $lang);
-                // \MODM
+// MODM
+            echo $item->linkRaw($this->thumbnail($item, 'medium'), null, ['class' => 'thumbnail']);
+// \MODM
             ?>
-<!--            <h4><?php echo $item->link($heading); ?></h4>-->
+            <h4><?php echo $item->link($heading); ?></h4>
             <?php if ($body): ?>
             <div class="description"><?php echo $escape($body); ?></div>
             <?php endif; ?>

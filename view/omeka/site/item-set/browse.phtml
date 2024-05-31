@@ -86,24 +86,14 @@ if (!$body) {
 }
 ?>
     <li class="item-set resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($thumbnail = $this->thumbnail($itemSet, 'medium')): ?>
-        <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php echo $itemSet->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
-        </div>
-        <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
             <?php
-<!--
-            $linkContent = sprintf('%s<span class="resource-name">%s</span>',
-                $thumbnail($itemSet, 'medium'),
-                $escape($heading));
-            echo $itemSet->linkRaw($linkContent, null, ['class' => 'resource-link']);
- -->
+
                 // MODM
-                echo $itemSet->linkPretty('medium', $heading, null, null, $lang);
+            echo $itemSet->linkRaw($this->thumbnail($itemSet, 'medium'), null, ['class' => 'thumbnail']);
                 // \MODM
             ?>
-<!--            <h4><?php echo $itemSet->link($heading); ?></h4> -->
+            <h4><?php echo $itemSet->link($heading); ?></h4>
             <?php if ($body): ?>
             <div class="description"><?php echo $escape($body); ?></div>
             <?php endif; ?>

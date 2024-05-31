@@ -95,9 +95,9 @@ if (!$body) {
 //** END MODM MODIFICATION **/
 ?>
     <li class="<?php echo $this->resourceType; ?> resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
-        <?php if ($showThumbnail && $thumbnail): ?>
+	<?php if ($thumbnail = $this->thumbnail($resource, 'medium')): ?>
         <div class="resource-image <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <?php echo $resource->linkRaw($thumbnail, null, ['class' => 'resource-link']); ?>
+            <?php echo $resource->linkRaw($thumbnail, null, ['class' => 'thumbnail']); ?>
         </div>
         <?php endif; ?>
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
