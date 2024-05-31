@@ -73,7 +73,7 @@ if ($bodyTerm) {
 
 <div class="resource-title">
 <!--  MODM - Ajout description dans le titre -->
-<?php echo $this->pageTitle($item->displayTitle(null, ($filterLocale ? $lang : null)), 2, ($body ? $escape($body) : '')); ?>
+<?php echo $this->pageTitle(($body ? $escape($body) : ''), 2, $item->displayTitle(null, ($filterLocale ? $lang : null))); ?>
 <!--  /MODM -->
 <h3 class="label"><?php echo $translate('Item'); ?></h3>
 </div>
